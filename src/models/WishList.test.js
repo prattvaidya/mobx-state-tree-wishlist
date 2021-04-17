@@ -10,6 +10,8 @@ it("can create an instance of a model", () => {
 
   expect(item.price).toBe(29.99);
   expect(item.image).toBe("");
+  item.changeName("Kafka on the Shore");
+  expect(item.name).toBe("Kafka on the Shore");
 });
 
 it("can create a wishlist", () => {
@@ -19,4 +21,19 @@ it("can create a wishlist", () => {
 
   expect(list.items.length).toBe(1);
   expect(list.items[0].price).toBe(29.99);
+});
+
+it("can add new items", () => {
+  const list = WishList.create();
+  list.add(
+    WishListItem.create({
+      name: "South of the Border, West of the Sun",
+      price: 25,
+    })
+  );
+
+  expect(list.items.length).toBe(1);
+  expect(list.items[0].name).toBe("South of the Border, West of the Sun");
+  list.items[0].changeName("Maximum City");
+  expect(list.items[0].name).toBe("Maximum City");
 });
