@@ -1,3 +1,4 @@
+import { getSnapshot, onSnapshot, onPatch } from "mobx-state-tree";
 import { WishList, WishListItem } from "./WishList";
 
 it("can create an instance of a model", () => {
@@ -25,15 +26,46 @@ it("can create a wishlist", () => {
 
 it("can add new items", () => {
   const list = WishList.create();
-  list.add(
-    WishListItem.create({
-      name: "South of the Border, West of the Sun",
-      price: 25,
-    })
-  );
+
+  const states = [];
+  onSnapshot(list, (snapshot) => states.push(snapshot));
+
+  list.add({
+    name: "South of the Border, West of the Sun",
+    price: 25,
+  });
 
   expect(list.items.length).toBe(1);
   expect(list.items[0].name).toBe("South of the Border, West of the Sun");
   list.items[0].changeName("Maximum City");
   expect(list.items[0].name).toBe("Maximum City");
+
+  expect(getSnapshot(list)).toEqual({
+    items: [
+      {
+        name: "Maximum City",
+        price: 25,
+        image: "",
+      },
+    ],
+  });
+
+  expect(getSnapshot(list)).toMatchSnapshot();
+  expect(states).toMatchSnapshot();
+});
+
+it("can add new items - 2", () => {
+  const list = WishList.create();
+
+  const patches = [];
+  onPatch(list, (patch) => patches.push(patch));
+
+  list.add({
+    name: "South of the Border, West of the Sun",
+    price: 25,
+  });
+
+  list.items[0].changeName("Maximum City");
+
+  expect(patches).toMatchSnapshot();
 });
