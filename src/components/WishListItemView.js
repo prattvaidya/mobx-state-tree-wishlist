@@ -10,6 +10,19 @@ export const WishListItemView = ({ item }) => {
   const [editing, setEditing] = useState(false);
   const [clone, setClone] = useState(null);
 
+  const cancel = () => setEditing(false);
+
+  const edit = () => {
+    setEditing(true);
+    setClone(mobxClone(item));
+  };
+
+  const save = () => {
+    applySnapshot(item, getSnapshot(clone));
+    setEditing(false);
+    setClone(null);
+  };
+
   const renderEditable = () => (
     <li className="item">
       <WishListItemEdit item={clone} />
@@ -18,27 +31,15 @@ export const WishListItemView = ({ item }) => {
     </li>
   );
 
-  const edit = () => {
-    setEditing(true);
-    setClone(mobxClone(item));
-  };
-
-  const cancel = () => setEditing(false);
-
-  const save = () => {
-    applySnapshot(item, getSnapshot(clone));
-    setEditing(false);
-    setClone(null);
-  };
-
   return editing ? (
     renderEditable()
   ) : (
     <li className="item">
-      {item.image && <img src={item.image} />}
+      {item.image && <img src={item.image} alt="itemImg" />}
       <h3>{item.name}</h3>
       <span>{item.price}</span>
       <button onClick={edit}>Edit</button>
+      <button onClick={item.remove}>Remove</button>
     </li>
   );
 };

@@ -9,8 +9,8 @@ const wishList = WishList.create({
     {
       name: "The subtle art of not giving a f***",
       price: 29,
-      image:
-        "https://upload.wikimedia.org/wikipedia/en/b/bd/The_Subtle_Art_of_Not_Giving_a_F%2Ack_by_Mark_Manson_-_Book_Cover.png",
+      // image:
+      //   "https://upload.wikimedia.org/wikipedia/en/b/bd/The_Subtle_Art_of_Not_Giving_a_F%2Ack_by_Mark_Manson_-_Book_Cover.png",
     },
     { name: "Finding Neverland", price: 43.3 },
   ],
