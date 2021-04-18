@@ -37,7 +37,7 @@ export const WishListItemView = ({ item }) => {
     <li className="item">
       {item.image && <img src={item.image} alt="itemImg" />}
       <h3>{item.name}</h3>
-      <span>{item.price}</span>
+      <span>$ {item.price}</span>
       <button onClick={edit}>Edit</button>
       <button onClick={item.remove}>Remove</button>
     </li>
