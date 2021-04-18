@@ -17,7 +17,7 @@ export const WishListItemView = ({ item }) => {
       <button onClick={save}>Done</button>
     </li>
   );
-  kw;
+
   const edit = () => {
     setEditing(true);
     setClone(mobxClone(item));
