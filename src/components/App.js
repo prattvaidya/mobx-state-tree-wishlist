@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { observer } from "mobx-react";
 import "../assets/index.css";
 import { WishListView } from "./WishListView";
 
-function App({ group }) {
+const App = observer(function App({ group }) {
   const [selectedUser, setSelectedUser] = useState(null);
 
   const selectUser = (e) =>
@@ -27,6 +28,6 @@ function App({ group }) {
       )}
     </div>
   );
-}
+});
 
 export default App;

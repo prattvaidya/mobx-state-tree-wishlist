@@ -7,23 +7,7 @@ import App from "./components/App";
 import { Group } from "./models/Group";
 
 let initialState = {
-  users: [
-    {
-      id: "jkasdh",
-      name: "Pratt Vaidya",
-      gender: "m",
-    },
-    {
-      id: "jdsjfnl",
-      name: "Andrew Michaan",
-      gender: "m",
-    },
-    {
-      id: "jfjansd",
-      name: "Cole Hersch",
-      gender: "m",
-    },
-  ],
+  users: [],
 };
 
 // old, for wishList
@@ -47,7 +31,9 @@ let initialState = {
 
 // let wishList = WishList.create(initialState);
 
-let group = Group.create(initialState);
+let group = (window.group = Group.create(initialState));
+// group.load();
+
 addMiddleware(group, (call, next) => {
   console.log(`[${call.type}] ${call.name}`);
   return next(call);

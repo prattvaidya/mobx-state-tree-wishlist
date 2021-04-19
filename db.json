@@ -22,5 +22,28 @@
       "price": 349.95,
       "image": ""
     }
+  ],
+  "users": [
+    {
+      "id": "jkasdh",
+      "name": "Pratt Vaidya",
+      "gender": "m",
+      "wishList": { "items": [] },
+      "recipient": null
+    },
+    {
+      "id": "jdsjfnl",
+      "name": "Andrew Michaan",
+      "gender": "m",
+      "wishList": { "items": [] },
+      "recipient": null
+    },
+    {
+      "id": "jfjansd",
+      "name": "Cole Hersch",
+      "gender": "m",
+      "wishList": { "items": [] },
+      "recipient": null
+    }
   ]
 }
