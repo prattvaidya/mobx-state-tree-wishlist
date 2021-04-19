@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { getSnapshot, onSnapshot } from "mobx-state-tree";
+import { getSnapshot, onSnapshot, addMiddleware } from "mobx-state-tree";
 import "./assets/index.css";
 import App from "./components/App";
 // import { WishList } from "./models/WishList";
@@ -48,6 +48,10 @@ let initialState = {
 // let wishList = WishList.create(initialState);
 
 let group = Group.create(initialState);
+addMiddleware(group, (call, next) => {
+  console.log(`[${call.type}] ${call.name}`);
+  return next(call);
+});
 
 // onSnapshot(wishList, (snapshot) =>
 //   localStorage.setItem("wishlistapp", JSON.stringify(snapshot))
