@@ -4,11 +4,11 @@ import { WishList } from "./WishList";
 
 export const User = types
   .model({
-    id: types.identifier(),
+    id: types.identifier,
     name: types.string,
     gender: types.enumeration("gender", ["m", "f", "o"]),
     wishList: types.optional(WishList, {}),
-    recipient: types.maybeNull(types.reference(types.late(() => User)),
+    recipient: types.maybeNull(types.reference(types.late(() => User))),
     //   gender: types.union(
     //     types.literal("m"),
     //     types.literal("f"),
