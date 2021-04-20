@@ -28,21 +28,33 @@
       "id": "jkasdh",
       "name": "Pratt Vaidya",
       "gender": "m",
-      "wishList": { "items": [] },
+      "wishList": {
+        "items": [
+          {
+            "name": "Apple Watch",
+            "price": 500,
+            "image": ""
+          }
+        ]
+      },
       "recipient": null
     },
     {
       "id": "jdsjfnl",
       "name": "Andrew Michaan",
       "gender": "m",
-      "wishList": { "items": [] },
+      "wishList": {
+        "items": []
+      },
       "recipient": null
     },
     {
       "id": "jfjansd",
       "name": "Cole Hersch",
       "gender": "m",
-      "wishList": { "items": [] },
+      "wishList": {
+        "items": []
+      },
       "recipient": null
     }
   ]
