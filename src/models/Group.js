@@ -7,7 +7,7 @@ import {
 } from "mobx-state-tree";
 
 import { WishList } from "./WishList";
-import { Storable } from "./Storable";
+import { createStorable } from "./Storable";
 
 export const User = types.compose(
   types
@@ -32,7 +32,7 @@ export const User = types.compose(
         self.wishList.items.push(...suggestions);
       }),
     })),
-  Storable
+  createStorable("users", "id")
 );
 
 export const Group = types
