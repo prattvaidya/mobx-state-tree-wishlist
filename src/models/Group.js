@@ -29,13 +29,31 @@ export const Group = types
   .model({
     users: types.array(User),
   })
-  .actions((self) => ({
-    afterCreate() {
-      self.load();
-    },
-    load: flow(function* load() {
-      const response = yield window.fetch(`http://localhost:3001/users`);
-      applySnapshot(self.users, yield response.json());
-    }),
-    drawLots() {},
-  }));
+  .actions((self) => {
+    let controller;
+    return {
+      afterCreate() {
+        self.load();
+      },
+      load: flow(function* load() {
+        controller = window.AbortController();
+        try {
+          const response = yield window.fetch(`http://localhost:3001/users`, {
+            signal: controller.signal,
+          });
+          applySnapshot(self.users, yield response.json());
+        } catch (e) {
+          console.log("aborted", e.name);
+        }
+      }),
+      reload() {
+        // abort current request
+        controller.abort();
+        self.load();
+      },
+      beforeDestroy() {
+        if (controller) controller.abort();
+      },
+      drawLots() {},
+    };
+  });

@@ -14,6 +14,7 @@ const App = observer(function App({ group }) {
       <header>
         <h1>WishList</h1>
       </header>
+      <button onClick={group.reload}>Reload</button>
       <select onChange={selectUser}>
         <option>Select User</option>
         {group.users.map((user) => (
